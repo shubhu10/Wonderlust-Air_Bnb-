@@ -1,8 +1,9 @@
 const express=require("express");
 const app= express();
 const mongoose=require("mongoose");
-const Listing=require("../Wonderlust-Air_Bnb-/modles/listing");
+const Listing=require("./models/listing");
 const { assert } = require("console");
+const path=require("path");
 
 
 
@@ -26,21 +27,26 @@ app.get("/",(req,res)=>{
     res.send("hey ! i am root");
 })
 
-app.get("/testListing",async (req,res)=>{
+// app.get("/testListing",async (req,res)=>{
 
-    let sampleListing=new Listing({
-        title:"My new villa",
-        description:"by the bich",
-        price:1200,
-        location:"Calangute,Goa",
-        country:"India",
-    });
+//     let sampleListing=new Listing({
+//         title:"My new villa",
+//         description:"by the bich",
+//         price:1200,
+//         location:"Calangute,Goa",
+//         country:"India",
+//     });
 
 
-   await sampleListing.save().then((res)=>{
-    console.log(res);
-   }).catch((err)=>{
-    console.log(err);
-   });
+//    await sampleListing.save().then((res)=>{
+//     console.log(res);
+//    }).catch((err)=>{
+//     console.log(err);
+//    });
 
+// })
+
+app.get("/listings",(req,res)=>{
+    const allListing=Listing.find({});
+    res.render("index.ejs",{allListing});
 })
