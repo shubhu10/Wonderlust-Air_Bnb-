@@ -1,6 +1,8 @@
 const express=require("express");
 const app= express();
 const mongoose=require("mongoose");
+const Listing=require("../Wonderlust-Air_Bnb-/modles/listing");
+const { assert } = require("console");
 
 
 
@@ -22,4 +24,23 @@ app.listen(1010,()=>{
 
 app.get("/",(req,res)=>{
     res.send("hey ! i am root");
+})
+
+app.get("/testListing",async (req,res)=>{
+
+    let sampleListing=new Listing({
+        title:"My new villa",
+        description:"by the bich",
+        price:1200,
+        location:"Calangute,Goa",
+        country:"India",
+    });
+
+
+   await sampleListing.save().then((res)=>{
+    console.log(res);
+   }).catch((err)=>{
+    console.log(err);
+   });
+
 })
