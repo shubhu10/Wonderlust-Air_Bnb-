@@ -7,6 +7,9 @@ const path=require("path");
 
 
 
+app.set("view engine","ejs");
+app.set("views",path.join(__dirname, "views"));
+
 let mongooseUrl="mongodb://127.0.0.1:27017/wanderlust"
 
 async function main(){
@@ -46,7 +49,8 @@ app.get("/",(req,res)=>{
 
 // })
 
-app.get("/listings",(req,res)=>{
-    const allListing=Listing.find({});
-    res.render("index.ejs",{allListing});
+app.get("/listings",async (req,res)=>{
+    const allListing=await Listing.find({});
+    // console.log(allListing);
+    res.render("./listings/index.ejs",{allListing});
 })
