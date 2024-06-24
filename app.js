@@ -10,7 +10,7 @@ const methodOverride=require("method-override");
 app.use(express.urlencoded({extended:true}));
 app.set("view engine","ejs");
 app.set("views",path.join(__dirname, "views"));
-app.use(methodOverride("_mehtod"));
+app.use(methodOverride("_method"));
 
 let mongooseUrl="mongodb://127.0.0.1:27017/wanderlust"
 
@@ -91,6 +91,23 @@ app.get("/listings/:id/edit",async (req,res)=>{
     let {id}=req.params;
     let listing=await Listing.findById(id);
     res.render("./listings/edit.ejs",{listing});
+})
+
+//update route 
+app.put("/listings/:id",async (req,res)=>{
+    let {id}=req.params;
+    
+    await Listing.findByIdAndUpdate(id,{...req.body.listing ,new:true});
+    res.redirect(`/listings/${id}`);
+
+})
+
+//delete route
+app.delete("/listings/:id",async (req,res)=>{
+    let {id}=req.params;
+    let deletedListings=await Listing.findByIdAndDelete(id);
+    console.log(deletedListings);
+    res.redirect("/listings");
 })
 
 
