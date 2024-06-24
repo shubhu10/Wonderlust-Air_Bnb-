@@ -4,11 +4,13 @@ const mongoose=require("mongoose");
 const Listing=require("./models/listing");
 const { assert } = require("console");
 const path=require("path");
+const methodOverride=require("method-override");
 
 
 app.use(express.urlencoded({extended:true}));
 app.set("view engine","ejs");
 app.set("views",path.join(__dirname, "views"));
+app.use(methodOverride("_mehtod"));
 
 let mongooseUrl="mongodb://127.0.0.1:27017/wanderlust"
 
@@ -85,8 +87,10 @@ app.post("/listings" ,async (req,res)=>{
 })
 
 //edit route
-app.get("/listings/:id/edit",(req,res)=>{
-    res.send("working");
+app.get("/listings/:id/edit",async (req,res)=>{
+    let {id}=req.params;
+    let listing=await Listing.findById(id);
+    res.render("./listings/edit.ejs",{listing});
 })
 
 
