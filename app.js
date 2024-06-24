@@ -6,7 +6,7 @@ const { assert } = require("console");
 const path=require("path");
 
 
-
+app.use(express.urlencoded({extended:true}));
 app.set("view engine","ejs");
 app.set("views",path.join(__dirname, "views"));
 
@@ -49,8 +49,44 @@ app.get("/",(req,res)=>{
 
 // })
 
+// index route 
+
 app.get("/listings",async (req,res)=>{
     const allListing=await Listing.find({});
     // console.log(allListing);
     res.render("./listings/index.ejs",{allListing});
 })
+
+
+// create route 
+
+app.get("/listings/new",(req,res)=>{
+    res.render("./listings/new.ejs");
+    
+})
+
+
+
+//show route
+
+app.get("/listings/:id",async (req,res)=>{
+    let {id}=req.params;
+    const listing=await Listing.findById(id);
+    res.render("./listings/show.ejs",{listing});
+
+})
+
+//create post
+app.post("/listings" ,async (req,res)=>{
+    
+    let newListing=new Listing(req.body.listing);
+    await newListing.save();
+    res.redirect("/listings");
+})
+
+//edit route
+app.get("/listings/:id/edit",(req,res)=>{
+    res.send("working");
+})
+
+
