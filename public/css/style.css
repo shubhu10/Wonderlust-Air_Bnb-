@@ -1,6 +1,6 @@
-/* body{
-    background-color: antiquewhite;
-} */
+body{
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+}
 
 /* navbar  */
 
@@ -15,3 +15,56 @@
 .nav-link{
     color: #222 !important;
 }
+/* footer  */
+footer{
+   
+    background-color: #ebebeb;
+    text-align: center;
+    
+}
+
+.f-info-links a{
+    text-decoration: none;
+    color: #222222;
+
+}
+.f-info-links a:hover{
+    text-decoration: underline;
+}
+.f-info{
+    height: 8rem;
+    display: flex;
+    justify-content: center;
+    align-items: space-evenly;
+    flex-wrap:wrap ;
+}
+.f-info-socials,.f-info-links,.f-info-brand{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.f-info-socials i{
+    font-size: 1.2rem;
+    margin-right: 1rem;
+
+}
+
+/* cards  */
+.card{
+    border: none  !important;
+    margin-bottom: 2rem;
+}
+.card-img-top{
+    border-radius: 1rem !important;
+    width: 100%;
+    object-fit: cover;
+}
+.card-body{
+    padding: 0 !important;
+}
+.card-text p{
+    font-weight:400 !important;
+}
+
