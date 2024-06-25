@@ -86,9 +86,18 @@ footer{
     background-color: white;
 }
 
+/* New page  */
+
 
 .add-btn{
     background-color: #fe4a4d !important;
     color: white !important;
+}
+
+/* Edit page  */
+
+.edit-btn{
+    background-color: #fe4a4d !important;
+    border: none !important;
 }
 
