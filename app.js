@@ -86,6 +86,7 @@ app.post("/listings" ,async (req,res)=>{
     
     let newListing=new Listing(req.body.listing);
     await newListing.save();
+    console.log(newListing);
     res.redirect("/listings");
 })
 

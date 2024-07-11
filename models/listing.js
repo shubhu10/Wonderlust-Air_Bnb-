@@ -12,7 +12,7 @@ const listingSchema=new Schema({
             image:{
                 type: String,
                 default:"https://images.pexels.com/photos/221387/pexels-photo-221387.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-                set :(v)=> v ===" " ?"https://images.pexels.com/photos/221387/pexels-photo-221387.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" :v,
+                set :(v)=> v ==="" ?"https://images.pexels.com/photos/221387/pexels-photo-221387.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" :v,
             },
             price:Number,
             location:String,
