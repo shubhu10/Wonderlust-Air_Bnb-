@@ -6,12 +6,17 @@
     <h3>Create a New Listings</h3>
     
     <form action="/listings" method="POST"   class="needs-validation"  novalidate>
-        <div class="mb-3"><label for="title" class="form-lable">Title</label>
+        <div class="mb-3">
+           
+            <label for="title" class="form-lable">Title</label>
             <input type="text" name="listing[title]" id="" placeholder="add a catchy title" class="form-control" required>
+            <div class="valid-feedback">Looks good!</div>
+            <div class="invalid-feedback">Title should be valid</div>
         </div>
         
         <div class="mb-3"><label for="description" class="form-lable">Description</label>
             <textarea name="listing[description]" id="" class="form-control" required></textarea>
+            <div class="invalid-feedback">Description should be valid</div>
            
         </div>
         
@@ -21,10 +26,12 @@
         <div class="row">
             <div class="mb-3 col-md-4"><label for="price" class="form-lable">Price</label>
                 <input type="number" name="listing[price]" id="" placeholder="1200" class="form-control" required>
+                <div class="invalid-feedback">Price should be valid</div>
             </div>
            
             <div class="mb-3 col-md-8"><label for="country" class="form-lable">Country</label>
                 <input type="text" name="listing[country]" id="" placeholder="India" class="form-control" required>
+                <div class="invalid-feedback">Country name should be valid</div>
             </div>
         </div>
        
@@ -32,6 +39,7 @@
         
         <div class="mb-3"><label for="location" class="form-lable">Location</label>
             <input type="text" name="listing[location]" id="" placeholder="Jaipur , Rajasthan" class="form-control" required>
+            <div class="invalid-feedback">Location should be valid.</div>
         </div>
         
      
