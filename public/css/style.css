@@ -58,7 +58,7 @@ footer{
 }
 
 /* cards  */
-.card{
+.listing-card{
     border: none  !important;
     margin-bottom: 2rem;
 }
@@ -74,7 +74,8 @@ footer{
     font-weight:400 !important;
 }
 .listing-link{
-    text-decoration: none;
+    text-decoration: none !important;
+    color: #000000;
 }
 
 /* cards overlay  */
