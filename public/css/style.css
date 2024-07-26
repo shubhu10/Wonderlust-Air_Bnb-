@@ -60,7 +60,7 @@ footer{
 /* cards  */
 .listing-card{
     border: none  !important;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem !important;
 }
 .card-img-top{
     border-radius: 1rem !important;
@@ -79,12 +79,18 @@ footer{
 }
 
 /* cards overlay  */
-.card-img-overlay{
-    opacity: 0;
+.listing-card {
+    position: relative;
+    overflow: hidden;
 }
-.card-img-overlay:hover{
-    opacity: 0.2;
-    background-color: white;
+
+.listing-card .card-img-overlay {
+    background-color: rgba(255, 255, 255, 0);
+    transition: background-color 0.4s ease;
+}
+
+.listing-card:hover .card-img-overlay {
+    background-color: rgba(255, 255, 255, 0.6); /* Adjust the alpha value for the desired effect */
 }
 
 /* New page  */

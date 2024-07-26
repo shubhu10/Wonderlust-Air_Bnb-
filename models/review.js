@@ -6,7 +6,7 @@ const Schema=mongoose.Schema;
 
 const reviewSchema=new Schema({
     comment:String,
-   rang:{
+   rating:{
         type:Number,
         min:1,
         max:5

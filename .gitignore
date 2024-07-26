@@ -1,5 +1,7 @@
 .env
 node_modules/
+test/
+
 
 
 //see wo nodemodules light ho gya iska matlab wo stage nhi hua  . 
