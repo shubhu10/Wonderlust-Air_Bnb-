@@ -1,25 +1,23 @@
 <% layout("/layouts/boilerplate")%>
-<body>
-    <h2>All Listing</h2>
-   <!-- <form action="/listings/new" method="get">
-    <button>Create New Listing</button>
-   </form> -->
-   
-   <div class="row  row-cols-xl-3 row-cols-lg-3 row-cols-md-3 row-cols-sm-2  row-cols-xxs-1">
+<%- include("../includes/icon-bar.ejs") %>
+   <div class="row ">
     <% for(let listing of allListing){ %>
+      <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 ">
         <a href="/listings/<%=listing._id%>" class="listing-link">
-        <div class="listing-card col " >
-         <img src="<%=listing.image%>" class="card-img-top" alt="..."  style="height: 20rem;">
+        <div class="listing-card" >
+         <img src="<%=listing.image.url%>" class="card-img-top" alt="..."  style="height: 20rem;">
          <div class="card-img-overlay"></div>
          <div class="card-body">
            <p class="card-text">
             <b>  <%= listing.title %> </b> <br> 
               &#8377; <%= listing.price ? listing.price.toLocaleString("en-IN") : "N/A" %> /night
+              <i class="tax-info"> &nbsp; &nbsp; +18% GST</i>
 
          </p>
          </div>
        </div>
        </a>
+      </div>
        <% } %>
    </div>
-</body>
+

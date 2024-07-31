@@ -1,0 +1,62 @@
+<div id="filters">
+    <div class="filter">
+      <div><i class="fa-solid fa-fire"></i></div>
+      <p>Trending</p>
+    </div>
+    <div class="filter">
+      <div><i class="fa-solid fa-bed"></i></div>
+      <p>Bed</p>
+    </div>
+    <div class="filter">
+      <div><i class="fa-solid fa-mountain-city"></i></div>
+      <p>Iconic city</p>
+    </div>
+    <div class="filter">
+      <div><i class="fa-solid fa-umbrella-beach"></i></div>
+      <p>Beach</p>
+    </div>
+    <div class="filter">
+      <div><i class="fa-solid fa-caravan"></i></div>
+      <p>Camper vans</p>
+    </div>
+    <div class="filter">
+      <div><i class="fa-solid fa-person-skiing"></i></div>
+      <p>Ski-in/out</p>
+    </div>
+    <div class="filter">
+      <div><i class="fa-solid fa-tower-observation"></i></div>
+      <p>Towers</p>
+    </div>
+    <div class="filter">
+      <div><i class="fa-solid fa-wheelchair-move"></i></div>
+      <p>Adapted</p>
+    </div>
+    <div class="filter">
+      <div><i class="fa-solid fa-sailboat"></i></div>
+      <p>Boats</p>
+    </div>
+    <div class="tax-toggle">
+      <div class="form-check form-switch form-check-reverse">
+        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+        <label class="form-check-label" for="flexSwitchCheckDefault">Display total after taxes</label>
+      </div>
+    </div>
+    
+</div>
+
+<script>
+  let taxBtn=document.getElementById("flexSwitchCheckDefault");
+  taxBtn.addEventListener("click",()=>{
+   let taxInfo=document.getElementsByClassName("tax-info");
+   for(let info of taxInfo )
+  {
+   if(info.style.display !="inline")
+   info.style.display="inline";
+   else{
+   info.style.display="none";
+  }
+  }
+ 
+      
+  })
+</script>

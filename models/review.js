@@ -1,4 +1,4 @@
-const { date } = require("joi");
+const { date, ref } = require("joi");
 const { Module } = require("module");
 const mongoose=require("mongoose");
 const { type } = require("os");
@@ -14,7 +14,11 @@ const reviewSchema=new Schema({
     createdAt:{
         type:Date,
         default:Date.now(),
-    }
+    },
+    author:{
+        type:Schema.Types.ObjectId,
+        ref:"User",
+    },
 });
 
 module.exports=mongoose.model("Review",reviewSchema);

@@ -1,6 +1,8 @@
 const mongoose=require("mongoose");
 const Schema=mongoose.Schema;
 const Review=require("./review");
+const { type } = require("os");
+const { required } = require("joi");
 
 const listingSchema=new Schema({
         title:{
@@ -10,9 +12,9 @@ const listingSchema=new Schema({
               },
             description:String,
             image:{
-                type: String,
-                default:"https://images.pexels.com/photos/221387/pexels-photo-221387.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-                set :(v)=> v ==="" ?"https://images.pexels.com/photos/221387/pexels-photo-221387.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" :v,
+                     url:String,
+                     filename:String, 
+               
             },
             price:Number,
             location:String,
@@ -21,6 +23,28 @@ const listingSchema=new Schema({
               type:Schema.Types.ObjectId,
               ref:"Review",
             }],
+            owner:{
+              type:Schema.Types.ObjectId,
+              ref:"User",
+            },
+            geometry: { 
+              type:{
+                type: String, //dont do {location {type:String}}
+                enum: ['Point'], //location must be 'point'
+                required:true  
+
+          },
+              coordinates:{
+                type:[Number] ,
+                required:true
+
+
+              }, 
+             
+            }
+              
+
+            
 
 });
 

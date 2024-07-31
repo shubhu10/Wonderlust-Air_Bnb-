@@ -1,3 +1,8 @@
+if(process.env.NODE_ENV != "production")
+{
+    require('dotenv').config();
+}
+
 const express=require("express");
 const app= express();
 const mongoose=require("mongoose");
@@ -55,12 +60,12 @@ main().then((res)=>{
 
 app.listen(1010,()=>{
     console.log("server is listening on port 1010");
-})
+});
 
 
-app.get("/",(req,res)=>{
-    res.send("hey ! i am root");
-})
+// app.get("/",(req,res)=>{
+//     res.send("hey ! i am root");
+// })
 
 
 app.use(session(sessionOption));
