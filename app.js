@@ -12,10 +12,13 @@ const methodOverride=require("method-override");
 const ejsMate=require("ejs-mate");
 const ExpressError=require("./utils/ExpressError");
 const session=require("express-session");
+const MongoStore = require('connect-mongo');
 const flash=require("connect-flash");
 const passport=require("passport");
 const LocalStrategy=require("passport-local");
 const User=require("./models/user.js");
+const bodyParser = require('body-parser');
+
 
 
 
@@ -24,6 +27,26 @@ const User=require("./models/user.js");
 const listingRoute=require("./routes/listing.js"); 
 const reviewRoute=require("./routes/review.js"); 
 const userRoute=require("./routes/user.js"); 
+const Listing = require('./models/listing.js');
+
+// let mongooseUrl="mongodb://127.0.0.1:27017/wanderlust"
+const dbUrl=process.env.DBATLAS_URL;
+
+main().then((res)=>{
+    console.log("connect successfull",res);
+}).catch((err)=>{
+    console.log(err);
+});
+
+async function main(){
+    await mongoose.connect(dbUrl);
+}
+
+
+
+app.listen(1010,()=>{
+    console.log("server is listening on port 1010",dbUrl);
+});
 
 
 app.use(express.urlencoded({extended:true}));
@@ -32,8 +55,22 @@ app.set("views",path.join(__dirname, "views"));
 app.use(methodOverride("_method"));
 app.engine("ejs",ejsMate);
 app.use(express.static(path.join(__dirname,"/public")));
+app.use(bodyParser.urlencoded({ extended: true }));
+const store=MongoStore.create({
+    mongoUrl:dbUrl,
+    crypto:{
+        secret:"supersecretString",
+    },
+    touchAfter:24*3600,
+   
+});
+
+store.on("error",(er)=>{
+    console.log("ERROR in mongo session store",er);
+})
 
 const sessionOption={
+    store,
     secret:"supersecretString",
     resave:false,
     saveUninitialized:true,
@@ -46,21 +83,7 @@ const sessionOption={
 
 
 
-let mongooseUrl="mongodb://127.0.0.1:27017/wanderlust"
 
-async function main(){
-    await mongoose.connect(mongooseUrl);
-}
-
-main().then((res)=>{
-    console.log("connect successfull");
-}).catch((err)=>{
-    console.log(err);
-});
-
-app.listen(1010,()=>{
-    console.log("server is listening on port 1010");
-});
 
 
 // app.get("/",(req,res)=>{

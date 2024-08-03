@@ -34,15 +34,13 @@ const listingSchema=new Schema({
                 required:true  
 
           },
-              coordinates:{
+           coordinates:{
                 type:[Number] ,
                 required:true
-
-
               }, 
              
-            }
-              
+            },
+        
 
             
 

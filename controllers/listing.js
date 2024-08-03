@@ -4,6 +4,10 @@ const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
 const map_Token=process.env.MAP_TOKEN;
 const geoCodingClient = mbxGeocoding({ accessToken: map_Token });
 
+
+
+
+
 // Index Route
 module.exports.index=async (req,res)=>{
 
@@ -14,18 +18,32 @@ module.exports.index=async (req,res)=>{
 
 //New Post
 module.exports.renderNewForm= (req,res)=>{
-        console.log(req.user);  
+        console.log(req);  
 
         res.render("./listings/new.ejs");
        
     
 };
+//render category
+module.exports.category=async(req,res)=>{
+    console.log(req.body);
+    let category=req.body.category;
+    if(!req.body.category)
+    {
+        req.flash("error","plaease select category");
+        res.send("not daata");
+
+    }
+    let listing=await Listing.find({country:category});
+    console.log(listing);
+}
 
 //Show listings
 module.exports.showListing=async (req,res)=>{
    
     let {id}=req.params;
     const listing=await Listing.findById(id).populate({path:"reviews",populate:{path:"author"}}).populate("owner");
+    res.locals.listings=listing;
     let cordinates=await geoCodingClient.forwardGeocode({
         query: listing.location,
         limit: 1

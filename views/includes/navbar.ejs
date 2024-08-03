@@ -1,57 +1,172 @@
 <style>
-  .search-box{
-    border-radius: 0.75rem;
+  .search-box {
+    border-radius: 1rem;
+    margin-right: 1rem !important;
+    padding: 0.25rem 2.5rem !important;
+    background-color: transparent;
+    color: black;
   }
-  .search-btn{
+  .search-box:hover {
+    background-color: transparent;
+    color: black;
+    box-shadow: 1px 1px black;
+  }
+  .search-box:active {
+    background-color: transparent !important;
+  }
+  .search-box::before {
+    background-color: transparent;
+  }
+  .search-btn {
     border-radius: 1rem;
     display: flex;
     align-items: center;
     transition: 0.2s ease-in;
-    border: 1px solid #3a3a3a;
-    color: black;
+    border: none;
+    background-color: #fe4a4d !important;
+    color: white;
     opacity: 0.8;
   }
-  .search-btn:hover{
-    background-color: #fe4a4d !important;
-    border: 1px solid #fe4a4d;
+  .search-btn:hover {
+    background-color: #ff4043 !important;
+    opacity: 1;
+    border: 1px solid #ff8789;
     color: white;
-
   }
-  .search-btn i{
+  .search-btn i {
     margin-right: 0.5rem;
   }
- 
+  .dropdown-menu {
+    margin-top: 1rem !important;
+    width: 28rem !important;
+    border-radius: 1.25rem;
+  }
+  .dropdown-categorys {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+  .dropdown-item label {
+    padding: 0.25rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .dropdown-categorys li a span{
+    font-size: 0.75rem;
+  }
+  .dropdown-item label img {
+    width: 6rem;
+    height: 6rem;
+    padding: 0.25rem !important;
+    border-radius: 0.75rem;
+  }
 </style>
 
 <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <!-- <a class="nav-link" aria-current="page" href="/">Home</a> -->
-          <a class="nav-link" href="/listings">Explore</a> 
-        </div>
-          
-        <div class="navbar-nav ms-auto">
-          <form class="d-flex" role="search">
-            <input class="form-control me-2 search-box " type="search" placeholder="Search your listing" aria-label="Search">
-            <button class="btn btn-outline-success search-btn " type="submit"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
-          </form>
-        </div>
-        <div class="navbar-nav ms-auto">
-          <a class="nav-link" href="/listings/new">Airbnb your home</a>
-          <%if(! currUser){%>
-          <a class="nav-link" aria-current="page" href="/signup"><b> SignUp</b></a>
-          <a class="nav-link" href="/login"><b>Login</b></a>
-          <%}%>
-          <%if(currUser){%>
-          <a class="nav-link" href="/logout">Logout</a>
-          <%}%>
-          
-        </div>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/listings"
+      ><i class="fa-regular fa-compass"></i
+    ></a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <!-- <a class="nav-link" aria-current="page" href="/">Home</a> -->
+        <a class="nav-link" href="/listings">Explore</a>
+      </div>
+      <div class="navbar-nav ms-auto">
+        <form class="d-flex" role="search" method="POST" action="/listings/category">
+          <div class="btn-group">
+            <button
+              class="btn btn-secondary dropdown-toggle search-box"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="true"
+            >
+              Search your Destination
+            </button>
+            <ul class="dropdown-menu">
+              <p>Search by region</p>
+              <div class="dropdown-categorys">
+                <li>
+                  <div class="dropdown-item">
+                    <input type="radio" class="btn-check" id="flexible"  name="category" value="flexible" checked>
+                    <label class="btn" for="flexible"><img src="../img/f9ec8a23-ed44-420b-83e5-10ff1f071a13.jpg" alt=""><span>I'am Flexible</span></label>
+                  </div>
+                </li>
+                <li>
+                  <div class="dropdown-item">
+                    <input type="radio" class="btn-check" id="india"  name="category" value="india">
+                    <label class="btn" for="india"><img src="../img/vecteezy_black-isolated-silhouette-india-map_5845951.jpg" alt="" ><span>India</span></label>
+                  </div>
+                </li>
+                <li>
+                  <div class="dropdown-item">
+                    <input type="radio" class="btn-check" id="usa"  autocomplete="off" name="category" value="United States" >
+                    <label class="btn" for="usa"><img src="../img/vecteezy_usa-map-vector_.jpg" alt="" ><span>United state</span></label>
+                  </div>
+                </li>
+                <li>
+                  <div class="dropdown-item">
+                    <input type="radio" class="btn-check" id="Europe"  autocomplete="off" name="category" value="Europe">
+                    <label class="btn" for="Europe"><img src="../img/7b5cf816-6c16-49f8-99e5-cbc4adfd97e2.jpg" alt="" ><span>Europe</span></label>
+                  </div>
+                </li>
+                <li>
+                  <div class="dropdown-item">
+                    <input type="radio" class="btn-check" id="middle-east" autocomplete="off" name="category" value="middleeast">
+                    <label class="btn" for="middle-east"><img src="../img/66355b01-4695-4db9-b292-c149c46fb1ca.jpg" alt="" ><span>Middle east</span></label>
+                  </div>
+                </li>
+                <li>
+                  <div class="dropdown-item">
+                    <input type="radio" class="btn-check" id="Southeast"   autocomplete="off" name="category" value="Southeast">
+                    <label class="btn" for="Southeast"><img src="../img/d77de9f5-5318-4571-88c7-e97d2355d20a.jpg" alt="" ><span>Southeast asia</span></label>
+                  </div>
+                </li>
+              </div>
+            </ul>
+          </div>
+          <button class="btn btn-outline-success search-btn" type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i> Search
+          </button>
+        </form>
+      </div>
+
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link" href="/listings/new">Airbnb your home</a>
+        <%if(! currUser){%>
+        <a class="nav-link" aria-current="page" href="/signup"
+          ><b> SignUp</b></a
+        >
+        <a class="nav-link" href="/login"><b>Login</b></a>
+        <%}%> <%if(currUser){%>
+        <a class="nav-link" href="/logout">Logout</a>
+        <%}%>
       </div>
     </div>
-  </nav>
+  </div>
+</nav>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const dropdownItems = document.querySelectorAll('li');
+
+    dropdownItems.forEach(item => {
+      item.addEventListener('click', function (event) {
+        event.stopPropagation();
+      });
+    });
+  });
+</script>
+

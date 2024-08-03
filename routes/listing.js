@@ -10,12 +10,17 @@ const multer  = require('multer');
 const { storage } = require("../cloudConfig.js");
 const upload = multer({storage})
 
+
+                         
+
 //Index & Create listing Route
 router.route("/")
 .get(wrapAsync(listingController.index))
 .post(isLoggedIn ,upload.single('listing[image]') ,validateListing,wrapAsync(listingController.createListing));
 
 // .post(isLoggedIn ,validateListing,wrapAsync(listingController.createListing));
+
+router.route("/category").post(listingController.category);
 
 // create route 
 router.get("/new",isLoggedIn,listingController.renderNewForm);
