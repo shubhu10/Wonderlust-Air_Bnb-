@@ -59,7 +59,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const store=MongoStore.create({
     mongoUrl:dbUrl,
     crypto:{
-        secret:"supersecretString",
+        secret:process.env.SECRET,
     },
     touchAfter:24*3600,
    
@@ -71,7 +71,7 @@ store.on("error",(er)=>{
 
 const sessionOption={
     store,
-    secret:"supersecretString",
+    secret:process.env.SECRET,
     resave:false,
     saveUninitialized:true,
     cookie:{
